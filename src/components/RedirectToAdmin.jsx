@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 
 const RedirectToAdmin = () => {
   useEffect(() => {
-    window.location.href = 'http://localhost:3000/admin'
+    window.location.href = process.env.Server+"/admin"
   }, [])
 
   return <p>Yönlendiriliyor...</p>

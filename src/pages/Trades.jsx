@@ -15,7 +15,7 @@ const TradeList = ({ trades, loading, title }) => (
   <div className="flex items-center justify-between">
     <div className="flex flex-col items-center">
       <img
-        src={trade.offered_product?.image ? `http://localhost:3000${trade.offered_product.image}` : "http://localhost:3000"+trade.offered_product.image}
+        src={trade.offered_product?.image ? process.env.Server+trade.offered_product.image : process.env.Server+trade.offered_product.image}
         alt={trade.offered_product?.name || "Ürün"}
         className="w-20 h-20 object-cover rounded-xl border"
       />
@@ -26,7 +26,7 @@ const TradeList = ({ trades, loading, title }) => (
 
     <div className="flex flex-col items-center">
       <img
-        src={trade.requested_product?.image ? `http://localhost:3000${trade.requested_product.image}` : "http://localhost:3000/uploads/PlaceHolder.jpg"}
+        src={trade.requested_product?.image ? process.env.Server+trade.requested_product.image : process.env.Server+"/uploads/PlaceHolder.jpg"}
         alt={trade.requested_product?.name || "Ürün"}
         className="w-20 h-20 object-cover rounded-xl border"
       />

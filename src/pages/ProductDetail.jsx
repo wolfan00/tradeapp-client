@@ -40,7 +40,7 @@ export default function ProductDetail() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
         <div className="overflow-hidden rounded-2xl shadow-md">
           <img
-            src={product.image ? "http://localhost:3000"+product.image : "http://localhost:3000/uploads/PlaceHolder.jpg"}
+            src={product.image ? process.env.Server+product.image : process.env.Server+"/uploads/PlaceHolder.jpg"}
             alt={product.name}
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
           />

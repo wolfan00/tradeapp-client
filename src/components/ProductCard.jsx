@@ -8,7 +8,7 @@ export default function ProductCard({ product }) {
   return (
     
     <div className="bg-white rounded-2xl shadow-md overflow-hidden transition-transform hover:scale-105 min-h-100 cursor-pointer" onClick={()=> navigate(`/products/`+product.id)}>
-      <img src={"http://localhost:3000"+product.image} alt={product.name}
+      <img src={process.env.Server+product.image} alt={product.name}
            className="w-full h-48 object-cover" />
       <div className="py-4 ">
         <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
