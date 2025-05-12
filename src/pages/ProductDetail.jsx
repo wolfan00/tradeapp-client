@@ -6,11 +6,23 @@ export default function ProductDetail() {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const server = import.meta.env.VITE_SERVER
+  const [category,setCategory] = useState("");
+
+  const handleGetCategory = async (id)=>{
+    await api.get("/categories/"+id)
+    .then(res => {
+      setCategory(res.data.name)
+    })
+  }
+
 
   useEffect(() => {
     api.get("/products/"+productId)
       .then(res => {
+        handleGetCategory(res.data.category_id)
         setProduct(res.data);
+        console.log("product",res)
         setLoading(false);
       })
       .catch(err => {
@@ -40,7 +52,7 @@ export default function ProductDetail() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
         <div className="overflow-hidden rounded-2xl shadow-md">
           <img
-            src={product.image ? process.env.Server+product.image : process.env.Server+"/uploads/PlaceHolder.jpg"}
+            src={product.image ? server+product.image : server+"/uploads/PlaceHolder.jpg"}
             alt={product.name}
             className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
           />
@@ -61,7 +73,7 @@ export default function ProductDetail() {
             <h2 className="text-md font-semibold text-gray-700 mb-2">Ürün Özellikleri</h2>
             <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
               <li>ID: {product.id}</li>
-              <li>Kategori: {product.category || 'Bilinmiyor'}</li>
+              <li>Kategori: {category || 'Bilinmiyor'}</li>
               <li>Durum: {product.condition || 'Belirtilmemiş'}</li>
               <li>Eklenme Tarihi: {product.created_at?.slice(0, 10) || 'N/A'}</li>
             </ul>

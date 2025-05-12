@@ -13,6 +13,7 @@ export default function CreateProduct() {
   const [fakeCondition,setFakeCondition] = useState("")
   const [categories, setCategories] = useState([]);
   const { user } = useUser();
+  const [isSubmit,setIsSubmit] = useState();
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -43,6 +44,10 @@ export default function CreateProduct() {
   const handleSubmit = async (e) => {
   e.preventDefault();
 
+    if(isSubmit) return
+    setIsSubmit(true)
+
+
   try {
     const uploadRes = await handleCreateImage(); 
     let uploadedImageUrl = uploadRes?.data?.imageUrl || "/uploads/PlaceHolder";
@@ -58,6 +63,8 @@ export default function CreateProduct() {
 
     const res = await api.post("/products", productData);
     console.log("Gönderildi:", res.data);
+
+    window.location.href = "/"
 
   } catch (err) {
     console.error("Hata:", err);
@@ -207,6 +214,7 @@ export default function CreateProduct() {
 
         <button
           type="submit"
+          disabled={isSubmit}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full cursor-pointer col-start-2"
         >
           Oluştur
