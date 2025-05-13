@@ -10,6 +10,7 @@ import ProductDetail from "./pages/ProductDetail";
 import MyProducts from "./pages/MyProducts";
 import CreateProduct from "./pages/CreateProduct";
 import UserInfo from "./pages/userInfo";
+import GetInfo from "./pages/GetInfo";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/my-products" element={<MyProducts />} />
           <Route path="/profile" element={<UserInfo />} />
           <Route path="/products/create" element={<CreateProduct />} />
+          <Route path="/getInfo" element={<GetInfo />} />
         </Routes>
       </main>
       <Footer />
